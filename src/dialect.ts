@@ -6,10 +6,10 @@ import type {
   Kysely,
   DialectAdapter,
 } from "kysely";
-import { DuckDbDriver } from "./driver";
+import { DuckDbDriver } from "./driver.js";
 import { DuckDBInstance } from "@duckdb/node-api";
-import { DuckDbQueryCompiler } from "./queryCompiler";
-import { DuckDbAdapter } from "./adapter";
+import { DuckDbQueryCompiler } from "./queryCompiler.js";
+import { DuckDbAdapter } from "./adapter.js";
 
 type Config = {
   database: DuckDBInstance;

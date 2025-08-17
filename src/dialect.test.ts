@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { DuckDBDialect } from "./dialect";
+import { DuckDBDialect } from "./dialect.js";
 import { DuckDBInstance } from "@duckdb/node-api";
 import { Kysely } from "kysely";
 

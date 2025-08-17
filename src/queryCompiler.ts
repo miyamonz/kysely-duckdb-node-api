@@ -1,4 +1,4 @@
-import { DefaultQueryCompiler } from "kysely";
+import { DefaultQueryCompiler, TableNode } from "kysely";
 
 const ID_WRAP_REGEX = /"/g;
 
@@ -40,7 +40,8 @@ export class DuckDbQueryCompiler extends DefaultQueryCompiler {
     return identifier.replace(ID_WRAP_REGEX, '""');
   }
 
-  protected override visitTable() {
-    throw new Error("Not implemented");
+  protected override visitTable(node: TableNode) {
+    // TODO: table mapping
+    super.visitTable(node);
   }
 }

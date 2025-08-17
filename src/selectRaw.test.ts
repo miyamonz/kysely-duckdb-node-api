@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { data, setupDb } from "./util.test";
+import { data, setupDb } from "./util.test.js";
 
 test("select from json file", async () => {
   const connection = await setupDb();

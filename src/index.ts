@@ -1,1 +1,1 @@
-export { DuckDBDialect } from "./dialect";
+export { DuckDBDialect } from "./dialect.js";
