@@ -40,7 +40,7 @@ export class DuckDbQueryCompiler extends DefaultQueryCompiler {
     return identifier.replace(ID_WRAP_REGEX, '""');
   }
 
-  protected visitTable(): void {
+  protected override visitTable() {
     throw new Error("Not implemented");
   }
 }

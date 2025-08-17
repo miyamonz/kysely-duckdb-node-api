@@ -5,21 +5,21 @@ import {
 } from "kysely";
 
 export class DuckDbAdapter extends DialectAdapterBase {
-  get supportsTransactionalDdl() {
+  override get supportsTransactionalDdl() {
     return false;
   }
 
-  get supportsReturning() {
+  override get supportsReturning() {
     return true;
   }
 
-  async acquireMigrationLock(
+  override async acquireMigrationLock(
     _db: Kysely<any>,
     _opt: MigrationLockOptions
-  ): Promise<void> {}
+  ) {}
 
-  async releaseMigrationLock(
+  override async releaseMigrationLock(
     _db: Kysely<any>,
     _opt: MigrationLockOptions
-  ): Promise<void> {}
+  ) {}
 }
