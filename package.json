@@ -1,0 +1,15 @@
+{
+  "name": "kysely-duckdb-node-api",
+  "version": "0.0.0",
+  "description": "Kysely dialect for @duckdb/node-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "vitest": "3.2.4"
+  }
+}
