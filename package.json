@@ -1,6 +1,7 @@
 {
   "name": "kysely-duckdb-node-api",
   "version": "0.0.0",
+  "type": "module",
   "description": "Kysely dialect for @duckdb/node-api",
   "main": "index.js",
   "scripts": {
