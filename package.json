@@ -16,18 +16,20 @@
   "scripts": {
     "build": "tsdown",
     "test": "vitest",
-    "pack-to-debug": "pnpm pack --pack-destination example -o"
+    "pack-to-debug": "pnpm build && pnpm pack -o example/kysely-duckdb-node-api.tgz"
   },
   "keywords": [],
   "author": "",
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
     "@duckdb/node-api": "*",
+    "kysely": "^0.28.5",
     "tsdown": "^0.14.1",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "@duckdb/node-api": "*"
+    "@duckdb/node-api": "*",
+    "kysely": "^0.28.5"
   }
 }

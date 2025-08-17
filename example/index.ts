@@ -1,3 +1,4 @@
-import { hello } from "kysely-duckdb-node-api";
+import { DuckDBDialect } from "kysely-duckdb-node-api";
 
-console.log(hello());
+const dialect = new DuckDBDialect({});
+console.log(dialect);
