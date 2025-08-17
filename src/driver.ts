@@ -69,9 +69,27 @@ class DuckDBKyselyConnection implements DatabaseConnection {
   }
 
   async *streamQuery<R>(
-    compiledQuery: CompiledQuery
+    compiledQuery: CompiledQuery,
+    chunkSize: number
   ): AsyncIterableIterator<QueryResult<R>> {
-    throw new Error("Not implemented");
+    const { sql, parameters } = compiledQuery;
+    const reader = await this.#conn.streamAndRead(
+      sql,
+      parameters as DuckDBValue[]
+    );
+
+    let count = 0;
+    while (!reader.done) {
+      const until = chunkSize * (count + 1);
+      await reader.readUntil(until);
+      const obj = await reader.getRowObjectsJS();
+
+      const startRow = count * chunkSize;
+      const endRow = Math.min(reader.currentRowCount, until);
+
+      yield { rows: obj.slice(startRow, endRow) as R[] };
+      count++;
+    }
   }
 
   async disconnect(): Promise<void> {

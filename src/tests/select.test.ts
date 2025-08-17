@@ -75,3 +75,29 @@ test("select with wheres", async () => {
     .execute();
   expect(results3).toEqual([{ first_name: "baz", gender: "woman" }]);
 });
+
+test("stream", async () => {
+  const kysely = await setupDb();
+  const results = kysely
+    .selectFrom("person")
+    .select(["first_name", "gender"])
+    .stream(1);
+
+  const reader = results[Symbol.asyncIterator]();
+
+  {
+    const { done, value } = await reader.next();
+    expect(done).toBe(false);
+    expect(value).toEqual({ first_name: "foo", gender: "man" });
+  }
+  {
+    const { done, value } = await reader.next();
+    expect(done).toBe(false);
+    expect(value).toEqual({ first_name: "baz", gender: "woman" });
+  }
+  {
+    const { done, value } = await reader.next();
+    expect(done).toBe(true);
+    expect(value).toBeUndefined();
+  }
+});
