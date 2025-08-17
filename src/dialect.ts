@@ -6,18 +6,24 @@ import type {
   Kysely,
   DialectAdapter,
 } from "kysely";
+import { DuckDbDriver } from "./driver";
+import { DuckDBInstance } from "@duckdb/node-api";
+import { DuckDbQueryCompiler } from "./queryCompiler";
+import { DuckDbAdapter } from "./adapter";
 
-type Config = {};
+type Config = {
+  database: DuckDBInstance;
+};
 export class DuckDBDialect implements Dialect {
   constructor(private readonly config: Config) {}
   createDriver(): Driver {
-    throw new Error("Not implemented");
+    return new DuckDbDriver(this.config);
   }
   createQueryCompiler(): QueryCompiler {
-    throw new Error("Not implemented");
+    return new DuckDbQueryCompiler({});
   }
   createAdapter(): DialectAdapter {
-    throw new Error("Not implemented");
+    return new DuckDbAdapter();
   }
   createIntrospector(db: Kysely<unknown>): DatabaseIntrospector {
     throw new Error("Not implemented");
