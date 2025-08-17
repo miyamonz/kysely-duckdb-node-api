@@ -50,3 +50,28 @@ test("select", async () => {
     { first_name: "baz", gender: "woman" },
   ]);
 });
+
+test("select with wheres", async () => {
+  const kysely = await setupDb();
+  const results = await kysely
+    .selectFrom("person")
+    .select(["first_name"])
+    .where("id", "=", 1)
+    .execute();
+  expect(results).toEqual([{ first_name: "foo" }]);
+
+  const results2 = await kysely
+    .selectFrom("person")
+    .select(["first_name", "gender"])
+    .where("id", "=", 1)
+    .execute();
+  expect(results2).toEqual([{ first_name: "foo", gender: "man" }]);
+
+  const results3 = await kysely
+    .selectFrom("person")
+    .select(["first_name", "gender"])
+    .where("id", "=", 2)
+    .where("gender", "=", "woman")
+    .execute();
+  expect(results3).toEqual([{ first_name: "baz", gender: "woman" }]);
+});
