@@ -10,6 +10,7 @@ import { DuckDbDriver } from "./driver.js";
 import { DuckDBInstance } from "@duckdb/node-api";
 import { DuckDbQueryCompiler } from "./queryCompiler.js";
 import { DuckDbAdapter } from "./adapter.js";
+import { DuckDbIntrospector } from "./introspector.js";
 
 type Config = {
   database: DuckDBInstance;
@@ -26,6 +27,6 @@ export class DuckDBDialect implements Dialect {
     return new DuckDbAdapter();
   }
   createIntrospector(db: Kysely<unknown>): DatabaseIntrospector {
-    throw new Error("Not implemented");
+    return new DuckDbIntrospector(db);
   }
 }
