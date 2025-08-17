@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Kysely dialect for @duckdb/node-api",
+  "files": [
+    "dist",
+    "src"
+  ],
   "module": "./dist/index.js",
   "main": "./dist/index.js",
   "exports": {
@@ -11,7 +15,8 @@
   },
   "scripts": {
     "build": "tsdown",
-    "test": "vitest"
+    "test": "vitest",
+    "pack-to-debug": "pnpm pack --pack-destination example -o"
   },
   "keywords": [],
   "author": "",
