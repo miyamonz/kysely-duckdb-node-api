@@ -82,11 +82,11 @@ class DuckDBKyselyConnection implements DatabaseConnection {
     while (!reader.done) {
       const until = chunkSize * (count + 1);
       await reader.readUntil(until);
-      const obj = await reader.getRowObjectsJS();
 
+      // is there a better way?
+      const obj = await reader.getRowObjectsJS();
       const startRow = count * chunkSize;
       const endRow = Math.min(reader.currentRowCount, until);
-
       yield { rows: obj.slice(startRow, endRow) as R[] };
       count++;
     }
